@@ -48,8 +48,14 @@ Réalisez une copie du dossier la machine **devopsgitlab** et renommez-le en **d
  * devopscible.vmxf
  * devopscible.vmdk
 * Avec VMware, ouvrez votre VM et démarrez-la
-* Créez votre utilisateur avec la commande `useradd [utilisateur] -p` (entrez ensuite le mot de passe)
+* Créez votre utilisateur avec la commande `useradd [utilisateur]` et entrez le mot de passe avec `passwd [utilisateur]`
 * Changez le nom du serveur dans le fichier : `/etc/hostname`
+* Arrêtez la machine `shutdown now`
+* **Avant de démarrer**, allez dans VMWare (clic droit) > `Settings` > `Network Adapter`
+  * sélectionnez `Bridged` pour toutes les machines
+  * dans `Advanced` cliquez sur `Generate` pour créer une nouvelle nouvelle adresse MAC
+* Sur chaque machine, `apt-get install openssh-server`. Faites `ip a` pour connaître l'adresse ip de la machine
+* Sur chaque machine (en particulier ansible), modifiez `/etc/hosts` de façon à pouvoir accéder aux autres machines avec la commande `ssh [utilisateur]@[hostname]`
 
 **Remarque :** sur la machine template, il reste nécessaire de créer l'utilisateur `gitlab`
 
